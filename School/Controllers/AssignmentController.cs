@@ -25,7 +25,7 @@ namespace School.Controllers
             return View(await _context.Assignments.ToListAsync());
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int  id)
         {
 
             var assignmentViewModel = await _context.AssignmentViewModel
@@ -35,13 +35,13 @@ namespace School.Controllers
 
         public async Task<IActionResult> Create()
         {
-            var Teachers = await _context.Teachers.ToListAsync();
-            var Subjects = await _context.Subjects.ToListAsync();
+            var T = await _context.Teachers.ToListAsync();
+            var S = await _context.Subjects.ToListAsync();
 
             AssignmentViewModel viewModel = new()
             {
-                Teachers = Teachers,
-                Subjects = Subjects
+                Teachers = T,
+                Subjects = S
             };
             return View(viewModel);
         }
