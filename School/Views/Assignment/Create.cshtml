@@ -1,0 +1,53 @@
+﻿@model School.ViewModel.AssignmentViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>AssignmentViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TeacherId" class="control-label"></label>
+                <select asp-for="TeacherId" class="form-control">
+                    @foreach (var item in Model.Teachers)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="TeacherId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubjectsId" class="control-label"></label>
+                <select asp-for="SubjectsId" class="form-control">
+                    @foreach (var item in Model.Subjects)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="SubjectsId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssignedDate" class="control-label"></label>
+                <input asp-for="AssignedDate" class="form-control" />
+                <span asp-validation-for="AssignedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
